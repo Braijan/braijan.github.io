@@ -4,7 +4,7 @@ import { GiChefToque } from 'react-icons/gi';
 import { FaReact } from 'react-icons/fa';
 import { LuGraduationCap } from 'react-icons/lu';
 import { RiPoliceBadgeLine } from 'react-icons/ri';
-import corpcommentImg from '@/public/corpcomment.png';
+import mood from '@/public/mood.png';
 import rmtdevImg from '@/public/rmtdev.png';
 import wordanalyticsImg from '@/public/wordanalytics.png';
 
@@ -72,10 +72,19 @@ export const experiencesData = [
 
 export const projectsData = [
   {
-    title: 'Project 1',
-    description: 'Coming soon!',
-    tags: ['React', 'Next.js', 'MongoDB', 'Tailwind', 'Prisma'],
-    imageUrl: corpcommentImg,
+    title: 'Mood',
+    description:
+      'Introducing Mood: Your personal journaling companion powered by AI. Write entries, get mood insights, and track your emotional journey with interactive graphs. ',
+    tags: [
+      'React',
+      'Next.js',
+      'Neon',
+      'Tailwind',
+      'Prisma',
+      'OpenAI',
+      'TypeScript',
+    ],
+    imageUrl: mood,
   },
   {
     title: 'Project 2',
