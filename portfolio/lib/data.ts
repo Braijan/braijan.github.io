@@ -7,6 +7,7 @@ import { RiPoliceBadgeLine } from 'react-icons/ri';
 import mood from '@/public/mood.png';
 import rmtdevImg from '@/public/rmtdev.png';
 import wordanalyticsImg from '@/public/wordanalytics.png';
+import { link } from 'fs';
 
 export const links = [
   {
@@ -83,20 +84,24 @@ export const projectsData = [
       'Prisma',
       'OpenAI',
       'TypeScript',
+      'PostgreSQL',
     ],
     imageUrl: mood,
+    link: 'https://www.themoodjourney.com',
   },
   {
     title: 'Project 2',
     description: 'Coming soon!',
     tags: ['React', 'TypeScript', 'Next.js', 'Tailwind', 'Redux'],
     imageUrl: rmtdevImg,
+    link: '',
   },
   {
     title: 'Project 3',
     description: 'Coming soon!',
     tags: ['React', 'Next.js', 'SQL', 'Tailwind', 'Framer'],
     imageUrl: wordanalyticsImg,
+    link: '',
   },
 ] as const;
 
@@ -108,15 +113,15 @@ export const skillsData = [
   'React',
   'Next.js',
   'Node.js',
-  //'Git',
+  'Git',
   'Tailwind',
-  //'Prisma',
+  'Prisma',
   //'MongoDB',
   //'Redux',
   //'GraphQL',
   //'Apollo',
   //'Express',
-  //'PostgreSQL',
+  'PostgreSQL',
   //'Python',
   //'Django',
   'Framer Motion',
