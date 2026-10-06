@@ -1,6 +1,6 @@
 export const SITE = {
   name: "Brian Charles Smith",
-  url: "https://briancharlessmith.com",
+  url: "https://www.briancharlessmith.com",
   description:
     "Software engineer who designs agentic systems that ship, and the guardrails that let a company trust them. Founder of The Smith Syndicate.",
   linkedin: "https://www.linkedin.com/in/brian-smith-a36b6059/",
