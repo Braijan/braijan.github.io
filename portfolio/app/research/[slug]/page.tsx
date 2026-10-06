@@ -92,7 +92,7 @@ export default async function PaperPage({ params }: Props) {
                 aria-label="Sections"
                 className="sticky top-28 max-h-[calc(100vh-9rem)] overflow-y-auto border-l border-border pl-5"
               >
-                <p className="font-mono text-[0.65rem] tracking-[0.2em] text-muted-foreground uppercase">
+                <p className="font-mono text-[0.7rem] tracking-[0.2em] text-muted-foreground uppercase">
                   Contents
                 </p>
                 <ol className="mt-4 space-y-2.5">
@@ -117,12 +117,12 @@ export default async function PaperPage({ params }: Props) {
           </div>
 
           <div className="mt-24 border-t border-border pt-10 lg:ml-[18rem]">
-            <p className="font-mono text-[0.65rem] tracking-[0.2em] text-muted-foreground uppercase">
+            <p className="font-mono text-[0.7rem] tracking-[0.2em] text-muted-foreground uppercase">
               Next paper
             </p>
             <Link
               href={`/research/${next.slug}`}
-              className="group mt-4 inline-flex items-baseline gap-3 font-serif text-2xl font-light text-foreground transition-colors hover:text-accent sm:text-3xl"
+              className="group mt-4 inline-flex items-baseline gap-3 font-serif text-2xl font-normal text-foreground transition-colors hover:text-accent sm:text-3xl"
             >
               {next.short}
               <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">

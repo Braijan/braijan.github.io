@@ -16,7 +16,7 @@ function ProjectRow({ project }: { project: Project }) {
       <div>
         <div className="flex flex-wrap items-center gap-3">
           <span
-            className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[0.6rem] tracking-[0.18em] uppercase ${
+            className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[0.7rem] tracking-[0.18em] uppercase ${
               project.live
                 ? "border-accent/30 text-accent"
                 : "border-border text-muted-foreground"
@@ -28,7 +28,7 @@ function ProjectRow({ project }: { project: Project }) {
             />
             {project.status}
           </span>
-          <span className="font-mono text-[0.65rem] tracking-[0.16em] text-muted-foreground uppercase">
+          <span className="font-mono text-[0.7rem] tracking-[0.16em] text-muted-foreground uppercase">
             {project.role}
           </span>
         </div>
@@ -51,14 +51,14 @@ function ProjectRow({ project }: { project: Project }) {
             </span>
           )}
         </h3>
-        <p className="mt-4 font-serif text-xl font-light text-accent italic">
+        <p className="mt-4 font-serif text-xl font-normal text-accent italic">
           {project.tagline}
         </p>
 
         <dl className="mt-8 space-y-4">
           {project.facts.map((fact) => (
             <div key={fact.label} className="flex items-baseline gap-4">
-              <dt className="min-w-[3.5rem] font-serif text-3xl font-light text-foreground tabular-nums">
+              <dt className="min-w-[3.5rem] font-serif text-3xl font-normal text-foreground tabular-nums">
                 {fact.value}
               </dt>
               <dd className="text-sm text-muted-foreground">{fact.label}</dd>
@@ -68,7 +68,7 @@ function ProjectRow({ project }: { project: Project }) {
       </div>
 
       <div className="flex flex-col">
-        <div className="space-y-5 text-pretty leading-relaxed text-foreground/80">
+        <div className="space-y-5 text-pretty leading-relaxed text-foreground/85">
           {project.body.map((para) => (
             <p key={para.slice(0, 24)}>{para}</p>
           ))}
@@ -100,7 +100,7 @@ export function Work() {
               Three systems, all in production or close to it.
             </h2>
           </div>
-          <p className="self-end text-pretty text-lg leading-relaxed text-foreground/75">
+          <p className="self-end text-pretty text-lg leading-relaxed text-foreground/85">
             All three are ventures of The Smith Syndicate, the studio I run
             with my brother. Kiryn is also the tool I use to keep track of the
             sessions that build the other two, and all three were made the way

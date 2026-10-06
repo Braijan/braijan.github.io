@@ -30,7 +30,7 @@ export function Contact() {
         </Reveal>
 
         <Reveal delay={120} className="mt-14 flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-          <p className="group w-fit font-serif text-2xl font-light break-all text-foreground sm:text-4xl">
+          <p className="group w-fit font-serif text-2xl font-normal break-all text-foreground sm:text-4xl">
             <EmailLink className="border-b border-accent/40 pb-1 transition-colors hover:border-accent hover:text-accent" />
           </p>
 

@@ -13,7 +13,7 @@ export function Path() {
               Chef, sergeant, restaurant owner, engineer.
             </h2>
           </Reveal>
-          <Reveal delay={120} className="space-y-5 self-end text-pretty text-lg leading-relaxed text-foreground/75">
+          <Reveal delay={120} className="space-y-5 self-end text-pretty text-lg leading-relaxed text-foreground/85">
             <p>
               I came to software late and from a long way off. A kitchen line
               and a police sergeant&apos;s desk turn out to be good training

@@ -44,7 +44,7 @@ export function SiteHeader() {
           <span className="font-serif text-lg leading-none tracking-tight">
             B<span className="text-accent italic">c</span>S
           </span>
-          <span className="hidden font-mono text-[0.65rem] tracking-[0.2em] text-muted-foreground uppercase transition-colors group-hover:text-foreground sm:inline">
+          <span className="hidden font-mono text-[0.7rem] tracking-[0.2em] text-muted-foreground uppercase transition-colors group-hover:text-foreground sm:inline">
             Brian Charles Smith
           </span>
         </Link>

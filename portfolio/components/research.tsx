@@ -15,7 +15,7 @@ export function Research() {
             <h2 className="mt-6 text-balance font-serif text-4xl leading-[1.05] font-light tracking-tight sm:text-5xl">
               What Omniira has taught me about agents.
             </h2>
-            <p className="mt-6 max-w-md text-pretty leading-relaxed text-foreground/70">
+            <p className="mt-6 max-w-md text-pretty leading-relaxed text-foreground/85">
               These are working drafts from a live deployment. The observations
               come from a period when the code was still changing, and each
               paper says so plainly before it reports anything, while every
@@ -30,14 +30,14 @@ export function Research() {
                   href={`/research/${paper.slug}`}
                   className="group block rounded-2xl border border-border bg-card/40 p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-card sm:p-8"
                 >
-                  <div className="flex items-center justify-between gap-4 font-mono text-[0.65rem] tracking-[0.18em] text-muted-foreground uppercase">
+                  <div className="flex items-center justify-between gap-4 font-mono text-[0.7rem] tracking-[0.18em] text-muted-foreground uppercase">
                     <span>
                       <span className="text-accent">Paper {i + 1}</span>
                       {paper.version ? ` · Draft ${paper.version}` : null}
                     </span>
                     <span>{Math.round(paper.words / 230)} min read</span>
                   </div>
-                  <h3 className="mt-5 text-balance font-serif text-2xl leading-snug font-light text-foreground sm:text-[1.7rem]">
+                  <h3 className="mt-5 text-balance font-serif text-2xl leading-snug font-normal text-foreground sm:text-[1.7rem]">
                     {paper.title.replace(/^Omniira:\s*/, "")}
                   </h3>
                   <p className="mt-4 text-pretty text-sm leading-relaxed text-muted-foreground">

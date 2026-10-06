@@ -110,7 +110,7 @@ export function Hero() {
       >
         {NOW.map((item) => (
           <div key={item.label} className="bg-background/80 px-5 py-4 backdrop-blur-md">
-            <dt className="font-mono text-[0.65rem] tracking-[0.2em] text-accent/80 uppercase">
+            <dt className="font-mono text-[0.7rem] tracking-[0.2em] text-accent/80 uppercase">
               {item.label}
             </dt>
             <dd className="mt-1 text-sm text-foreground/90">{item.value}</dd>

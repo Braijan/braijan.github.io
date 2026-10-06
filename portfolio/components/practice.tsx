@@ -59,7 +59,7 @@ export function Practice() {
             </h2>
           </Reveal>
 
-          <Reveal delay={120} className="space-y-5 self-end text-pretty text-lg leading-relaxed text-foreground/80">
+          <Reveal delay={120} className="space-y-5 self-end text-pretty text-lg leading-relaxed text-foreground/85">
             <p>
               Most of the code I ship is written by Claude Code sessions running
               side by side, which moves the hard part of the job upstream: knowing
@@ -77,7 +77,7 @@ export function Practice() {
               <Reveal className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] lg:gap-20">
                 <div className="flex items-start gap-6">
                   <span
-                    className="w-14 shrink-0 pt-2 font-serif text-2xl font-light text-accent italic"
+                    className="w-14 shrink-0 pt-2 font-serif text-2xl font-normal text-accent italic"
                     aria-hidden="true"
                   >
                     {d.numeral}
@@ -91,7 +91,7 @@ export function Practice() {
                     </p>
                   </div>
                 </div>
-                <div className="space-y-5 text-pretty text-lg leading-relaxed text-foreground/80">
+                <div className="space-y-5 text-pretty text-lg leading-relaxed text-foreground/85">
                   {d.body.map((para) => (
                     <p key={para.slice(0, 32)}>{para}</p>
                   ))}
