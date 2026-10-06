@@ -1,72 +1,62 @@
-'use client';
+import { SITE } from "@/lib/site";
+import { Reveal } from "./reveal";
+import { SectionLabel } from "./section-label";
 
-import React from 'react';
-import SectionHeading from './section-heading';
-import { useSectionInView } from '@/lib/hooks';
-import { motion } from 'framer-motion';
-import { sendEmail } from '@/actions/sendEmail';
-import SubmitBtn from './submit-btn';
-import toast from 'react-hot-toast';
+const LINKS = [
+  { label: "LinkedIn", href: SITE.linkedin },
+  { label: "GitHub", href: SITE.github },
+  { label: "The Smith Syndicate", href: SITE.syndicate },
+];
 
-export default function Contact() {
-  const { ref } = useSectionInView('Contact');
-
+export function Contact() {
   return (
-    <motion.section
-      id="contact"
-      ref={ref}
-      className="mb-20 sm:mb-28 w-[min(100%,38rem)] text-center"
-      initial={{
-        opacity: 0,
-      }}
-      whileInView={{
-        opacity: 1,
-      }}
-      transition={{
-        duration: 1,
-      }}
-      viewport={{
-        once: true,
-      }}
-    >
-      <SectionHeading>Contact me</SectionHeading>
-      <p className="text-gray-700 -mt-6 dark:text-white/80">
-        Please contact me directly at{' '}
-        <a className="underline" href="mailto:brian@briancharlessmith.com">
-          brian@briancharlessmith.com
-        </a>{' '}
-        or through this form.
-      </p>
-      <form
-        className="mt-10 flex flex-col dark:text-black"
-        action={async (formData) => {
-          const { data, error } = await sendEmail(formData);
-
-          if (error) {
-            toast.error(error);
-            return;
-          }
-
-          toast.success('Email sent Successfully!');
+    <section id="contact" className="relative isolate overflow-hidden border-t border-border px-5 py-24 sm:px-8 sm:py-36">
+      <div
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(46rem 26rem at 50% 100%, oklch(0.82 0.06 75 / 9%), transparent 70%)",
         }}
-      >
-        <input
-          className="h-14 px-4 rounded-lg borderBlack dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
-          name="senderEmail"
-          type="email"
-          required
-          maxLength={500}
-          placeholder="Your email"
-        />
-        <textarea
-          className="h-52 my-3 rounded-lg borderBlack p-4 dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
-          name="message"
-          placeholder="Your message"
-          required
-          maxLength={5000}
-        />
-        <SubmitBtn />
-      </form>
-    </motion.section>
+        aria-hidden="true"
+      />
+      <div className="mx-auto max-w-7xl">
+        <Reveal>
+          <SectionLabel index="05" label="Contact" />
+          <h2 className="mt-8 max-w-4xl text-balance font-serif text-5xl leading-[1] font-light tracking-tight sm:text-7xl">
+            If your team is working out how to put agents into production,{" "}
+            <span className="text-accent italic">let&apos;s talk.</span>
+          </h2>
+        </Reveal>
+
+        <Reveal delay={120} className="mt-14 flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+          <a
+            href={`mailto:${SITE.email}`}
+            className="group w-fit font-serif text-2xl font-light break-all text-foreground sm:text-4xl"
+          >
+            <span className="border-b border-accent/40 pb-1 transition-colors group-hover:border-accent group-hover:text-accent">
+              {SITE.email}
+            </span>
+          </a>
+
+          <ul className="flex flex-wrap gap-x-8 gap-y-3">
+            {LINKS.map((link) => (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-1.5 font-mono text-xs tracking-[0.16em] text-muted-foreground uppercase transition-colors hover:text-accent"
+                >
+                  {link.label}
+                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                    ↗
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+      </div>
+    </section>
   );
 }

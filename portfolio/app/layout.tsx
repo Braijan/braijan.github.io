@@ -1,41 +1,94 @@
-import Header from '@/components/header';
-import './globals.css';
-import { Inter } from 'next/font/google';
-import ActiveSectionContextProvider from '@/context/active-section-context';
-import { Toaster } from 'react-hot-toast';
-import Footer from '@/components/footer';
-import ThemeSwitch from '@/components/theme-switch';
-import ThemeContextProvider from '@/context/theme-context';
+import type { Metadata, Viewport } from "next";
+import { Fraunces, Geist, Geist_Mono } from "next/font/google";
+import { SITE } from "@/lib/site";
+import "./globals.css";
 
-const inter = Inter({ subsets: ['latin'] });
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-fraunces",
+  display: "swap",
+});
 
-export const metadata = {
-  title: 'Brian | Personal Portfolio',
-  description: 'Brian is a software developer.',
+const geist = Geist({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-geist",
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-geist-mono",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE.url),
+  title: {
+    default: SITE.name,
+    template: `%s | ${SITE.name}`,
+  },
+  description: SITE.description,
+  authors: [{ name: SITE.name, url: SITE.url }],
+  creator: SITE.name,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: SITE.name,
+    title: SITE.name,
+    description: SITE.description,
+    url: SITE.url,
+    locale: "en_US",
+    images: [{ url: "/images/brian.jpg", width: 1077, height: 1077, alt: SITE.name }],
+  },
+  twitter: {
+    card: "summary",
+    title: SITE.name,
+    description: SITE.description,
+    images: ["/images/brian.jpg"],
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0a0b0d",
+  width: "device-width",
+  initialScale: 1,
+};
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: SITE.name,
+  url: SITE.url,
+  image: `${SITE.url}/images/brian.jpg`,
+  jobTitle: "Security Product Engineer",
+  worksFor: { "@type": "Organization", name: "Enigma Networks" },
+  founder: {
+    "@type": "Organization",
+    name: "The Smith Syndicate",
+    url: SITE.syndicate,
+  },
+  alumniOf: { "@type": "CollegeOrUniversity", name: "Johnson & Wales University" },
+  sameAs: [SITE.linkedin, SITE.github],
 };
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="!scroll-smooth">
+    <html lang="en" className="bg-background">
       <body
-        className={`${inter.className} bg-gray-50 text-gray-950 relative pt-28 sm:pt-36 dark:bg-gray-900 dark:text-gray-50 dark:text-opacity-90`}
+        className={`${fraunces.variable} ${geist.variable} ${geistMono.variable} font-sans antialiased`}
       >
-        <div className="bg-[#fbe2e3] absolute top-[-6rem] -z-10 right-[11rem] h-[31.25rem] w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem] dark:bg-[#946263]"></div>
-        <div className="bg-[#dbd7fb] absolute top-[-1rem] -z-10 left-[-35rem] h-[31.25rem] w-[50rem] rounded-full blur-[10rem] sm:w-[68.75rem] md:left=[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] dark:bg-[#676394]"></div>
-
-        <ThemeContextProvider>
-          <ActiveSectionContextProvider>
-            <Header />
-            {children}
-            <Footer />
-            <Toaster position="top-right" />
-            <ThemeSwitch />
-          </ActiveSectionContextProvider>
-        </ThemeContextProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
+        <div className="grain" aria-hidden="true" />
+        {children}
       </body>
     </html>
   );
