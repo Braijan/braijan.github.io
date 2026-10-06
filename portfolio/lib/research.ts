@@ -15,21 +15,21 @@ export const PAPERS: Paper[] = [
     file: "cognitive-architecture.md",
     short: "A layered cognitive architecture",
     summary:
-      "Characters that choose what to remember, score hearsay below what they saw themselves, pass gossip with its source attached, and keep a diary. Five extensions to the standard generative-agent design, running live.",
+      "Characters choose what to remember, trust hearsay less than what they saw themselves, pass gossip along with its source attached, let emotion color what they recall and keep a diary. The paper describes these extensions to the standard generative-agent design as they run live.",
   },
   {
     slug: "institutional-agents",
     file: "institutional-agents.md",
     short: "Institutional agents and policy cycles",
     summary:
-      "Four LLM ministers and a regent governing a commodity economy. When the treasury drifted toward its floor the ministers raised taxes on their own, and once it recovered they withdrew the proposals.",
+      "Four LLM ministers and a regent govern a commodity economy. When the treasury drifted toward its floor the ministers raised taxes on their own, and once it recovered they withdrew the proposals.",
   },
   {
     slug: "ontological-routing",
     file: "ontological-routing.md",
     short: "Ontological routing",
     summary:
-      "Every input a player types gets a real answer and the system never speaks as itself. A live affordance compiler, an agent that dispatches into it, and an 8B fallback that costs about $0.000014 a call.",
+      "Every input a player types gets a real answer, and the system never speaks as itself. An agent maps what the player typed onto actions compiled from live world state, and when nothing fits, an 8B model narrates the attempt for about $0.000014 a call.",
   },
 ];
 

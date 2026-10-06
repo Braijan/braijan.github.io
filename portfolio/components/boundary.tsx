@@ -16,25 +16,25 @@ const RINGS: Ring[] = [
     name: "Workspace",
     verdict: "Agents work freely",
     allowed: true,
-    body: "Every session opens at the top of the workspace, so one question can be answered across the API, the app and the infrastructure at once. It reads any repo, writes code and runs the suite.",
+    body: "Every session opens at the top of the workspace, so a question about the API can be answered with a change to the app in the same session. It can read any repository and write and test code in all of them.",
   },
   {
     name: "Stage",
     verdict: "Agents ship here",
     allowed: true,
-    body: "Agents branch, open pull requests and merge to stage. Merged to stage counts as done, and nothing about that step needs me in the loop beyond reading the PR.",
+    body: "Agents branch and open pull requests, and they merge to stage once the checks pass. Merged to stage counts as done, and nothing about that step needs me beyond reading the pull request.",
   },
   {
     name: "Secrets",
     verdict: "Never read",
     allowed: false,
-    body: "No .env file, no credential directory, no variable file that might hold a key. If a secret ever surfaces in context by accident, the instruction is to treat it as never seen.",
+    body: "Agents never open an .env file or anything else that might hold a key. If a secret ever surfaces in context by accident, the standing instruction is to treat it as never seen.",
   },
   {
     name: "Production",
     verdict: "Human only",
     allowed: false,
-    body: "A hook on every shell command blocks anything aimed at production and fails closed. Permission I grant mid-session doesn't change that. When a task needs prod, the agent hands me the exact command with placeholders and carries on with everything else.",
+    body: "A hook on every shell command blocks anything aimed at production and fails closed, and permission I grant mid-session doesn't change that. When a task needs prod, the agent hands me the exact command with placeholders and carries on with everything else.",
   },
 ];
 

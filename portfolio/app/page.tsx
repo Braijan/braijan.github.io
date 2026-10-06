@@ -1,4 +1,5 @@
 import { Contact } from "@/components/contact";
+import { HashScroll } from "@/components/hash-scroll";
 import { Hero } from "@/components/hero";
 import { Path } from "@/components/path";
 import { Practice } from "@/components/practice";
@@ -10,6 +11,7 @@ import { Work } from "@/components/work";
 export default function Home() {
   return (
     <>
+      <HashScroll />
       <SiteHeader />
       <main id="main-content" className="relative">
         <Hero />

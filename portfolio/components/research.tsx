@@ -16,10 +16,10 @@ export function Research() {
               What Omniira has taught me about agents.
             </h2>
             <p className="mt-6 max-w-md text-pretty leading-relaxed text-foreground/70">
-              Working drafts from a live deployment. The observations come from
-              a period when the code was still changing, and each paper says so
-              plainly before it reports anything. Every system claim has been
-              checked against the source.
+              These are working drafts from a live deployment. The observations
+              come from a period when the code was still changing, and each
+              paper says so plainly before it reports anything, while every
+              claim about the system has been checked against the source code.
             </p>
           </Reveal>
 
