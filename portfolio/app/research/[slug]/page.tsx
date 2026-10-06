@@ -28,6 +28,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: paper.summary,
       url: `${SITE.url}/research/${paper.slug}`,
       authors: [SITE.name],
+      images: [{ url: "/og.png", width: 1200, height: 630, alt: SITE.name }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: paper.title,
+      description: paper.summary,
+      images: ["/og.png"],
     },
   };
 }

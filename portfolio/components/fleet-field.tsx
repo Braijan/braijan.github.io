@@ -7,7 +7,6 @@ type Agent = {
   y: number;
   heading: number;
   speed: number;
-  trail: { x: number; y: number }[];
 };
 
 type Spark = { x: number; y: number; nx: number; ny: number; life: number };
@@ -16,29 +15,22 @@ const VIEW = 320;
 const CENTER = VIEW / 2;
 const SAND = "227, 207, 169";
 const EMBER = "224, 128, 96";
-const TRAIL = 14;
 
 /**
- * A simulated fleet drifting through the rings the agents are allowed in. Any agent
+ * A fleet drifting through the rings the agents are allowed in. Any agent
  * that wanders onto the secrets boundary is turned back, and the wall flashes.
  * Drawn in the same 320-unit space as the ring SVG it sits on.
  */
 export function FleetField({
   inner,
   outer,
-  count = 42,
-  onBlock,
+  count = 36,
 }: {
   inner: number;
   outer: number;
   count?: number;
-  onBlock?: () => void;
 }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const onBlockRef = useRef(onBlock);
-  useEffect(() => {
-    onBlockRef.current = onBlock;
-  }, [onBlock]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -58,8 +50,7 @@ export function FleetField({
         x: CENTER + Math.cos(a) * r,
         y: CENTER + Math.sin(a) * r,
         heading: Math.random() * Math.PI * 2,
-        speed: 0.28 + Math.random() * 0.32,
-        trail: [],
+        speed: 0.22 + Math.random() * 0.26,
       };
     });
     const sparks: Spark[] = [];
@@ -104,7 +95,6 @@ export function FleetField({
           nx = CENTER + ux * (inner + 2.5);
           ny = CENTER + uy * (inner + 2.5);
           sparks.push({ x: CENTER + ux * inner, y: CENTER + uy * inner, nx: ux, ny: uy, life: 1 });
-          onBlockRef.current?.();
         } else if (d > outer - 2) {
           const vx = Math.cos(ag.heading);
           const vy = Math.sin(ag.heading);
@@ -114,8 +104,6 @@ export function FleetField({
           ny = CENTER + uy * (outer - 2.5);
         }
 
-        ag.trail.push({ x: ag.x, y: ag.y });
-        if (ag.trail.length > TRAIL) ag.trail.shift();
         ag.x = nx;
         ag.y = ny;
       }
@@ -130,22 +118,14 @@ export function FleetField({
       if (!ctx) return;
       ctx.clearRect(0, 0, VIEW, VIEW);
 
-      ctx.lineCap = "round";
       for (const ag of agents) {
-        if (ag.trail.length > 1) {
-          for (let i = 1; i < ag.trail.length; i++) {
-            const a = (i / ag.trail.length) * 0.28;
-            ctx.strokeStyle = `rgba(${SAND}, ${a.toFixed(3)})`;
-            ctx.lineWidth = 0.8;
-            ctx.beginPath();
-            ctx.moveTo(ag.trail[i - 1].x, ag.trail[i - 1].y);
-            ctx.lineTo(ag.trail[i].x, ag.trail[i].y);
-            ctx.stroke();
-          }
-        }
+        ctx.fillStyle = `rgba(${SAND}, 0.12)`;
+        ctx.beginPath();
+        ctx.arc(ag.x, ag.y, 4, 0, Math.PI * 2);
+        ctx.fill();
         ctx.fillStyle = `rgba(${SAND}, 0.95)`;
         ctx.beginPath();
-        ctx.arc(ag.x, ag.y, 1.5, 0, Math.PI * 2);
+        ctx.arc(ag.x, ag.y, 1.4, 0, Math.PI * 2);
         ctx.fill();
       }
 

@@ -128,7 +128,7 @@ export const PATH: Station[] = [
     year: "2025",
     title: "Co-founded The Smith Syndicate",
     place: "With my brother Josh",
-    body: "An independent studio for privacy-conscious software. Cruina and Omniira are ours.",
+    body: "An independent studio for privacy-conscious software. Cruina, Omniira and Kiryn are ours.",
   },
   {
     year: "Now",

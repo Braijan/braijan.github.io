@@ -101,10 +101,10 @@ export function Work() {
             </h2>
           </div>
           <p className="self-end text-pretty text-lg leading-relaxed text-foreground/75">
-            Cruina and Omniira are ventures of The Smith Syndicate, the studio
-            I run with my brother. Kiryn is the tool I built to keep track of
-            the sessions that build them. All three were made the way the
-            section above describes.
+            All three are ventures of The Smith Syndicate, the studio I run
+            with my brother. Kiryn is also the tool I use to keep track of the
+            sessions that build the other two, and all three were made the way
+            the section above describes.
           </p>
         </Reveal>
 

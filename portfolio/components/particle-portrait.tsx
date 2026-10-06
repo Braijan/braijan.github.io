@@ -25,7 +25,7 @@ type Particle = {
   phase: number;
 };
 
-const SAND = "227, 207, 169";
+const SILVER = "196, 204, 214";
 const EMBER = "224, 128, 96";
 const BUCKETS = 10;
 
@@ -58,6 +58,8 @@ export function ParticlePortrait({
     let visible = true;
     let start = performance.now();
     const pointer = { x: -9999, y: -9999, active: false };
+    // Taps send a one-off shockwave, which is how a phone gets to play with it.
+    const pulses: { x: number; y: number }[] = [];
 
     const image = new Image();
     image.decoding = "async";
@@ -153,11 +155,23 @@ export function ParticlePortrait({
       const radius = Math.max(70, Math.min(width, height) * 0.16);
       const radius2 = radius * radius;
 
+      const pulse = pulses.shift();
+      const pulseR = radius * 1.8;
       for (const p of particles) {
+        if (pulse && !reduce) {
+          const dx = p.x - pulse.x;
+          const dy = p.y - pulse.y;
+          const d = Math.hypot(dx, dy);
+          if (d < pulseR && d > 0.01) {
+            const kick = (1 - d / pulseR) * 44;
+            p.vx += (dx / d) * kick;
+            p.vy += (dy / d) * kick;
+          }
+        }
         if (!reduce) {
           // Assemble over the first two seconds, then breathe.
-          const settle = Math.min(1, (t - start) / 1400);
-          const k = 0.022 + 0.05 * settle;
+          const settle = Math.min(1, (t - start) / 1200);
+          const k = 0.03 + 0.11 * settle;
           const drift = Math.sin(t / 1400 + p.phase) * 0.35;
           let fx = (p.hx + drift - p.x) * k;
           let fy = (p.hy + Math.cos(t / 1700 + p.phase) * 0.35 - p.y) * k;
@@ -168,21 +182,21 @@ export function ParticlePortrait({
             const d2 = dx * dx + dy * dy;
             if (d2 < radius2 && d2 > 0.01) {
               const d = Math.sqrt(d2);
-              const force = (1 - d / radius) * 2.4;
+              const force = (1 - d / radius) * 5.2;
               fx += (dx / d) * force;
               fy += (dy / d) * force;
             }
           }
 
-          p.vx = (p.vx + fx) * 0.86;
-          p.vy = (p.vy + fy) * 0.86;
+          p.vx = (p.vx + fx) * 0.74;
+          p.vy = (p.vy + fy) * 0.74;
           p.x += p.vx;
           p.y += p.vy;
         }
 
-        // Only the cursor's disturbance glows; the opening assembly stays in sand.
+        // Only the cursor's disturbance glows; the opening assembly stays silver.
         const displaced = Math.abs(p.x - p.hx) + Math.abs(p.y - p.hy);
-        if (displaced > 14 && !reduce && t - start > 2600) {
+        if (displaced > 10 && !reduce && t - start > 1800) {
           hot.moveTo(p.x + p.r, p.y);
           hot.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         } else {
@@ -193,7 +207,7 @@ export function ParticlePortrait({
       }
 
       for (let b = 0; b < BUCKETS; b++) {
-        ctx.fillStyle = `rgba(${SAND}, ${((b + 0.5) / BUCKETS).toFixed(3)})`;
+        ctx.fillStyle = `rgba(${SILVER}, ${((b + 0.5) / BUCKETS).toFixed(3)})`;
         ctx.fill(paths[b]);
       }
       ctx.fillStyle = `rgba(${EMBER}, 0.75)`;
@@ -214,6 +228,12 @@ export function ParticlePortrait({
     }
 
     const onMove = (e: PointerEvent) => toLocal(e.clientX, e.clientY);
+    const onDown = (e: PointerEvent) => {
+      toLocal(e.clientX, e.clientY);
+      if (e.pointerType !== "mouse" && pulses.length < 3) {
+        pulses.push({ x: pointer.x, y: pointer.y });
+      }
+    };
     const onLeave = () => {
       pointer.active = false;
     };
@@ -246,7 +266,7 @@ export function ParticlePortrait({
     io.observe(canvas);
 
     window.addEventListener("pointermove", onMove, { passive: true });
-    window.addEventListener("pointerdown", onMove, { passive: true });
+    window.addEventListener("pointerdown", onDown, { passive: true });
     window.addEventListener("pointerup", onUp, { passive: true });
     window.addEventListener("pointercancel", onUp, { passive: true });
     document.addEventListener("pointerleave", onLeave);
@@ -258,7 +278,7 @@ export function ParticlePortrait({
       ro.disconnect();
       io.disconnect();
       window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("pointerdown", onMove);
+      window.removeEventListener("pointerdown", onDown);
       window.removeEventListener("pointerup", onUp);
       window.removeEventListener("pointercancel", onUp);
       document.removeEventListener("pointerleave", onLeave);
