@@ -3,7 +3,6 @@ export const SITE = {
   url: "https://briancharlessmith.com",
   description:
     "Software engineer who designs agentic systems that ship, and the guardrails that let a company trust them. Founder of The Smith Syndicate.",
-  email: "brian@thesmithsyndicate.com",
   linkedin: "https://www.linkedin.com/in/brian-smith-a36b6059/",
   github: "https://github.com/Braijan",
   syndicate: "https://thesmithsyndicate.com",

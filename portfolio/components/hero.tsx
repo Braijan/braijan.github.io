@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { SITE } from "@/lib/site";
+import { ParticlePortrait } from "./particle-portrait";
 
 const NOW = [
   { label: "Day job", value: "Security Product Engineer, Enigma Networks" },
@@ -15,22 +15,19 @@ export function Hero() {
     >
       <div className="glow -z-20" aria-hidden="true" />
 
-      {/* Portrait: right side on desktop, behind the name on mobile */}
+      {/* Portrait as a particle field: right side on desktop, behind the name on mobile */}
       <div
-        className="portrait-wrap reveal-slow absolute inset-x-0 top-0 -z-10 h-[62svh] lg:inset-y-0 lg:right-0 lg:left-auto lg:h-auto lg:w-[56%] xl:w-[52%]"
-        style={{ animationDelay: "0.2s" }}
+        className="reveal-slow absolute inset-x-0 top-0 -z-10 h-[64svh] lg:inset-y-0 lg:right-0 lg:left-auto lg:h-auto lg:w-[58%] xl:w-[54%]"
+        style={{ animationDelay: "0.1s" }}
       >
-        <div className="portrait-mask relative h-full w-full">
-          <Image
-            src="/images/brian.jpg"
-            alt="Portrait of Brian Charles Smith"
-            fill
-            priority
-            sizes="(min-width: 1024px) 56vw, 100vw"
-            className="portrait object-cover object-[60%_30%] lg:object-[45%_35%]"
-          />
-          <div className="portrait-tint absolute inset-0" aria-hidden="true" />
-        </div>
+        <ParticlePortrait
+          src="/images/brian.jpg"
+          focusX={0.62}
+          focusY={0.3}
+          fadeLeft
+          className="h-full w-full touch-pan-y"
+          label="Portrait of Brian Charles Smith drawn as a field of particles that scatter from the cursor and settle back"
+        />
       </div>
       <div
         className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-background to-transparent"
@@ -99,7 +96,7 @@ export function Hero() {
             </span>
           </a>
           <a
-            href={`mailto:${SITE.email}`}
+            href="#contact"
             className="inline-flex items-center rounded-full border border-border bg-card/40 px-6 py-3 text-sm text-foreground backdrop-blur-sm transition-colors hover:border-foreground/40"
           >
             Get in touch

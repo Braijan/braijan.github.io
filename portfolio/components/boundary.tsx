@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
+import { FleetField } from "./fleet-field";
 
 type Ring = {
   name: string;
@@ -42,10 +43,17 @@ const RADII = [150, 112, 74, 38];
 export function Boundary() {
   const [active, setActive] = useState(RINGS.length - 1);
   const ring = RINGS[active];
+  const blocked = useRef(0);
+  const counter = useRef<HTMLSpanElement | null>(null);
+  const onBlock = useCallback(() => {
+    blocked.current += 1;
+    if (counter.current) counter.current.textContent = blocked.current.toLocaleString("en-US");
+  }, []);
 
   return (
     <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-14">
-      <div className="relative mx-auto aspect-square w-full max-w-[22rem]">
+      <div className="mx-auto w-full max-w-[26rem]">
+      <div className="relative aspect-square w-full">
         <svg
           viewBox="0 0 320 320"
           className="h-full w-full"
@@ -94,6 +102,15 @@ export function Boundary() {
             );
           })}
         </svg>
+        <FleetField inner={RADII[2]} outer={RADII[0]} onBlock={onBlock} />
+      </div>
+      <p className="mt-4 flex items-center justify-center gap-2 font-mono text-[0.65rem] tracking-[0.16em] text-muted-foreground uppercase">
+        <span className="h-1.5 w-1.5 rounded-full bg-ember" aria-hidden="true" />
+        Simulation · turned back{" "}
+        <span ref={counter} className="text-ember tabular-nums" aria-live="off">
+          0
+        </span>
+      </p>
       </div>
 
       <div>

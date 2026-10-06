@@ -106,40 +106,6 @@ body {
     radial-gradient(40rem 30rem at 10% 90%, oklch(0.5 0.02 250 / 16%), transparent 70%);
 }
 
-/* Portrait: monochrome, warmed toward the accent, fading into the ground */
-.portrait {
-  filter: grayscale(1) contrast(1.12) brightness(0.92);
-  transition: filter 1.2s ease;
-}
-
-.portrait-wrap:hover .portrait {
-  filter: grayscale(0.35) contrast(1.05) brightness(0.95);
-}
-
-.portrait-tint {
-  background: oklch(0.82 0.06 75);
-  mix-blend-mode: multiply;
-  opacity: 0.32;
-}
-
-.portrait-mask {
-  -webkit-mask-image:
-    linear-gradient(to right, transparent 0%, #000 28%, #000 100%),
-    linear-gradient(to top, transparent 0%, #000 30%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(to right, transparent 0%, #000 28%, #000 100%),
-    linear-gradient(to top, transparent 0%, #000 30%);
-  mask-composite: intersect;
-}
-
-@media (max-width: 1023px) {
-  .portrait-mask {
-    -webkit-mask-image: linear-gradient(to top, transparent 5%, #000 60%);
-    mask-image: linear-gradient(to top, transparent 5%, #000 60%);
-  }
-}
-
 /* Outlined numerals for the work index */
 .numeral {
   color: transparent;
@@ -202,7 +168,6 @@ body {
     opacity: 1 !important;
     transform: none !important;
   }
-  .portrait { transition: none; }
   html { scroll-behavior: auto; }
 }
 
