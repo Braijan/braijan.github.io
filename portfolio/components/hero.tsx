@@ -46,7 +46,7 @@ export function Hero() {
         >
           <span className="pulse h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
           <span>
-            Founder,{" "}
+            Co-founder,{" "}
             <span className="text-foreground underline decoration-accent/40 underline-offset-4 transition-colors group-hover:decoration-accent">
               The Smith Syndicate
             </span>
